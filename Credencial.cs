@@ -14,7 +14,8 @@ namespace SistemaProtoA
 
         public const String SALT = "1FnM6_";
 
-        [Required]
+        //[Required]
+        [Index(IsUnique = true)]
         [StringLength(250)]
         public String Email { get; set; }
 

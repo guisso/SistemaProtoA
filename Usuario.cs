@@ -7,7 +7,7 @@ namespace SistemaProtoA
     [Table("tbl_usuario")]
     internal class Usuario
     {
-        // [Key]
+        // [Key] ... UsuarioId ...
         public Int64 Id { get; set; }
 
         [Required]
