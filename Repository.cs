@@ -1,12 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Common;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaProtoA
 {
@@ -15,7 +11,6 @@ namespace SistemaProtoA
         private static MySqlConnection _databaseConnection;
 
         public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Test> PropriedadeTestes { get; set; }
 
         public Repository() : base()
         {

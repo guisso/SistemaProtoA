@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaProtoA
 {
@@ -28,6 +24,21 @@ namespace SistemaProtoA
                     }
 
                     dbContext.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static List<Usuario> FindAll()
+        {
+            try
+            {
+                using (Repository dbContext = new Repository(Repository.GetDbConnection(), false))
+                {
+                    return dbContext.Usuarios.ToList();
                 }
             }
             catch (Exception)
@@ -69,13 +80,15 @@ namespace SistemaProtoA
             }
         }
 
-        public static List<Usuario> FindAll()
+        public static List<Usuario> FindByPartialName(String partialName)
         {
             try
             {
                 using (Repository dbContext = new Repository(Repository.GetDbConnection(), false))
                 {
-                    return dbContext.Usuarios.ToList();
+                    return dbContext.Usuarios
+                        .Where(u => u.Nome.Contains(partialName))
+                        .ToList<Usuario>();
                 }
             }
             catch (Exception)
@@ -90,13 +103,14 @@ namespace SistemaProtoA
             {
                 using (Repository dbContext = new Repository(Repository.GetDbConnection(), false))
                 {
-                    //dbContext.Usuarios.Attach(usuario);
-                    //dbContext.Usuarios.Remove(usuario);
+                    dbContext.Usuarios.Attach(usuario);
+                    dbContext.Usuarios.Remove(usuario);
 
                     // OR
 
-                    dbContext.Entry(usuario).State
-                        = EntityState.Deleted;
+                    // But cascade delete fails...
+                    //dbContext.Entry(usuario).State
+                    //    = EntityState.Deleted;
 
                     dbContext.SaveChanges();
                 }

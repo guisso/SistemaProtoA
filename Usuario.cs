@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaProtoA
 {
@@ -20,9 +16,9 @@ namespace SistemaProtoA
 
         public override string ToString()
         {
-            return Id 
+            return Id
                 + ", " + Nome
-                + ", " + Credencial?.Email;
+                + ", Credencial: " + Credencial?.Id;
         }
     }
 }
