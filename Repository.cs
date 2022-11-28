@@ -12,15 +12,16 @@ namespace SistemaProtoA
 
         public DbSet<Usuario> Usuarios { get; set; }
 
-        public Repository() : base()
+        public Repository() : base(GetDbConnection(), false)
         {
             Database.CreateIfNotExists();
         }
 
-        public Repository(DbConnection existingConnection, bool contextOwnsConnection) : base(existingConnection, contextOwnsConnection)
-        {
-            Database.CreateIfNotExists();
-        }
+        //public Repository(DbConnection existingConnection, bool contextOwnsConnection)
+        //: base(existingConnection, contextOwnsConnection)
+        //{
+        //    Database.CreateIfNotExists();
+        //}
 
         public static MySqlConnection GetDbConnection()
         {

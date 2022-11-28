@@ -11,7 +11,7 @@ namespace SistemaProtoA
         {
             try
             {
-                using (Repository dbContext = new Repository(Repository.GetDbConnection(), false))
+                using (Repository dbContext = new Repository())
                 {
                     if (usuario.Id == 0)
                     {
@@ -36,7 +36,7 @@ namespace SistemaProtoA
         {
             try
             {
-                using (Repository dbContext = new Repository(Repository.GetDbConnection(), false))
+                using (Repository dbContext = new Repository())
                 {
                     return dbContext.Usuarios.ToList();
                 }
@@ -51,7 +51,7 @@ namespace SistemaProtoA
         {
             try
             {
-                using (Repository dbContext = new Repository(Repository.GetDbConnection(), false))
+                using (Repository dbContext = new Repository())
                 {
                     return dbContext.Usuarios.Find(id);
                 }
@@ -66,7 +66,7 @@ namespace SistemaProtoA
         {
             try
             {
-                using (Repository dbContext = new Repository(Repository.GetDbConnection(), false))
+                using (Repository dbContext = new Repository())
                 {
                     return dbContext.Usuarios
                         .Include("Credencial")
@@ -84,7 +84,7 @@ namespace SistemaProtoA
         {
             try
             {
-                using (Repository dbContext = new Repository(Repository.GetDbConnection(), false))
+                using (Repository dbContext = new Repository())
                 {
                     return dbContext.Usuarios
                         .Where(u => u.Nome.Contains(partialName))
@@ -101,7 +101,7 @@ namespace SistemaProtoA
         {
             try
             {
-                using (Repository dbContext = new Repository(Repository.GetDbConnection(), false))
+                using (Repository dbContext = new Repository())
                 {
                     dbContext.Usuarios.Attach(usuario);
                     dbContext.Usuarios.Remove(usuario);
