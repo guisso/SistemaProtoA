@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace SistemaProtoA
 {
+    [Table("tbl_credencial")]
     internal class Credencial
     {
         // Primary key equal to User's foreign key - One-To-One Relationship

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaProtoA
 {
+    [Table("tbl_usuario")]
     internal class Usuario
     {
         // [Key]
