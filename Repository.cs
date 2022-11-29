@@ -14,14 +14,28 @@ namespace SistemaProtoA
 
         public Repository() : base(GetDbConnection(), false)
         {
-            Database.CreateIfNotExists();
-        }
+            // If database not exists, create it ...
+            if (Database.CreateIfNotExists())
+            {
+                // ... and...
+                Repository repositorio = this;
 
-        //public Repository(DbConnection existingConnection, bool contextOwnsConnection)
-        //: base(existingConnection, contextOwnsConnection)
-        //{
-        //    Database.CreateIfNotExists();
-        //}
+                // ... insert a default administrator
+                Usuario administradorPadrao = new Usuario();
+                administradorPadrao.Nome = "Admin";
+
+                Credencial credencialPadrao = new Credencial();
+                credencialPadrao.Email = "admin@mail.com";
+                credencialPadrao.Senha = "xyz098";
+                credencialPadrao.Administrador = true;
+
+                credencialPadrao.Usuario = administradorPadrao;
+                administradorPadrao.Credencial = credencialPadrao;
+
+                repositorio.Usuarios.Add(administradorPadrao);
+                repositorio.SaveChanges();
+            }
+        }
 
         public static MySqlConnection GetDbConnection()
         {
